@@ -51,13 +51,21 @@ def floor_extractor(df: pd.DataFrame, col: str) -> pd.DataFrame:
 # 3. 범주형 변수는 타겟 인코딩 적용
 preprocess_pipeline = ColumnTransformer(
     transformers=[
-        ("sqrt_transformation", FunctionTransformer(np.sqrt), ["size"]),
+        (
+            "sqrt_transformation",
+            FunctionTransformer(np.sqrt),
+            ["size"],
+        ),
         (
             "floor_extractor",
             FunctionTransformer(floor_extractor, kw_args={"col": "floor"}),
             ["floor"],
         ),
-        ("target_encoding", TargetEncoder(), CAT_FEATURES),
+        (
+            "target_encoding",
+            TargetEncoder(),
+            CAT_FEATURES,
+        ),
     ],
     remainder="passthrough",
     verbose_feature_names_out=False,

@@ -53,10 +53,16 @@ if __name__ == "__main__":
         index=False,
     )
 
+    # params_candidates = {
+    #     "learning_rate": [0.01, 0.05, 0.1],
+    #     "max_depth": [3, 4, 5, 6],
+    #     "max_features": [1.0, 0.9, 0.8, 0.7],
+    # }
+
     params_candidates = {
-        "learning_rate": [0.01, 0.05, 0.1],
-        "max_depth": [3, 4, 5, 6],
-        "max_features": [1.0, 0.9, 0.8, 0.7],
+        "learning_rate": [0.05],
+        "max_depth": [5],
+        "max_features": [0.7],
     }
 
     param_set = get_param_set(params=params_candidates)
@@ -141,7 +147,7 @@ if __name__ == "__main__":
         name="house_rent",
         model=mlflow.sklearn.load_model(
             # TODO: 베스트 모델 URI
-            mlflow.sklearn.load_model(best_model_uri)
+            best_model_uri
         ),
         signatures={"predict": {"batchable": True, "batch_dim": 0}},
         metadata=best_params,

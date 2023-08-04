@@ -38,6 +38,7 @@ if __name__ == "__main__":
     y = np.log1p(train_df["rent"])
 
     # TODO: X=_X, y=y로 전처리 파이프라인을 적용해 X에 저장
+    X = preprocess_pipeline.fit_transform(X=_X, y=y)
 
     # Data storage - 피처 데이터 저장
     if not os.path.exists(os.path.join(DATA_PATH, "storage")):
@@ -122,7 +123,8 @@ if __name__ == "__main__":
     # TODO: 베스트 모델을 아티팩트 폴더에 복사
     copy_tree(
         # TODO: 베스트 모델 URI에서 file:// 를 지울 것,
-        ARTIFACT_PATH
+        best_model_uri.replace("file://", ""),
+        ARTIFACT_PATH,
     )
 
     # BentoML에 모델 저장

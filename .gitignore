@@ -164,3 +164,8 @@ cython_debug/
 
 # mlflow
 mlruns/
+
+# mlflow artifacts
+artifacts/
+data/storage
+predictions/
